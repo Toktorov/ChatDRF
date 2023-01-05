@@ -44,6 +44,9 @@ INSTALLED_APPS = [
     #cors
     'corsheaders',
 
+    #docs
+    'drf_yasg',
+
     #apps
     'apps.users',
     'apps.chats',
