@@ -8,7 +8,8 @@ class User(AbstractUser):
         verbose_name="Телефонный номер"
     )
     age = models.PositiveSmallIntegerField(
-        verbose_name="Возраст"
+        verbose_name="Возраст",
+        blank=True, null=True
     )
     
     def __str__(self):

@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     #rest
     'rest_framework',
 
+    #cors
+    'corsheaders',
+
     #apps
     'apps.users',
     'apps.chats',
@@ -76,6 +79,21 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'chatdrf.wsgi.application'
 
+#cors config
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = [
+    "http://94.228.124.229",
+    "http://localhost:1000",
+    "http://localhost:2000",
+    "http://localhost:3000",
+    "http://localhost:4000",
+    "http://localhost:5000",
+    "http://localhost:6000",
+    "http://localhost:7000",
+    "http://localhost:8000",
+    "http://localhost:9000",
+    "https://kyzmat24.com",
+]
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
