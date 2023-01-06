@@ -1,11 +1,18 @@
 from rest_framework import serializers
 from apps.users.models import User 
+from apps.chats.serializers import ChatSerializer
 
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'username', 'first_name', 'last_name', 'email', 'date_joined', 'phone_number','age', 'profile_image', 'bio')
+        fields = ('id', 'username', 'first_name', 'last_name', 'email', 'date_joined', 'phone_number','age', 'profile_image', 'bio', 'last_activity')
+
+class UserRetrieveUpdateDestroyAPIViewSerializer(serializers.ModelSerializer):
+    from_user_chat = ChatSerializer(read_only = True, many = True)
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'first_name', 'last_name', 'email', 'date_joined', 'phone_number','age', 'profile_image', 'bio', 'last_activity', 'from_user_chat')
 
 class UserRegisterSerializer(serializers.ModelSerializer):
     username = serializers.CharField(

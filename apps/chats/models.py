@@ -15,7 +15,7 @@ class Chat(models.Model):
         related_name = "to_user_chat",
         verbose_name = "Чат к пользователю"
     )
-    created = models.DateTimeField(
+    created_at = models.DateTimeField(
         auto_now_add=True
     )
 
@@ -53,7 +53,7 @@ class Message(models.Model):
         default=False,
         verbose_name="Прочитан"
     )
-    created = models.TimeField(
+    created_at = models.TimeField(
         auto_now_add = True
     )
 

@@ -23,8 +23,11 @@ class User(AbstractUser):
         verbose_name="Био",
         blank = True, null = True
     )
+    last_activity = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name="Последняя активность"
+    )
 
-    
     def __str__(self):
         return self.username 
 
