@@ -20,7 +20,7 @@ class Chat(models.Model):
     )
 
     def __str__(self):
-        return f"{self.id} -- {self.from_chat_user} -- {self.to_chat_user} -- {self.created}"
+        return f"{self.id} -- {self.from_chat_user} -- {self.to_chat_user} -- {self.created_at}"
 
     class Meta:
         verbose_name = "Чат"
