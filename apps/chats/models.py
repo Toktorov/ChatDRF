@@ -30,7 +30,7 @@ class Message(models.Model):
     chat = models.ForeignKey(
         Chat, 
         on_delete = models.CASCADE,
-        related_name = 'user_chat_id',
+        related_name = 'messages_chat',
         verbose_name = "ID сообщения"
     )
     from_user = models.ForeignKey(
