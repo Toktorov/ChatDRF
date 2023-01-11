@@ -24,6 +24,13 @@ class MessageCreateSerializer(serializers.ModelSerializer):
         model = Message
         fields = ('message', 'chat')
 
+    def validate(self, attrs):
+        try:
+            chat = Chat.objects.get(pk = self.initial_data['chat'], from_chat_user = self.context['request'].user)
+        except:
+            chat = Chat.objects.get(pk = self.initial_data['chat'], to_chat_user = self.context['request'].user)
+        return attrs
+
     def create(self, validated_data):
         chat = Chat.objects.get(pk = self.initial_data['chat'])
         message = Message.objects.create(chat = validated_data['chat'], message = validated_data['message'], from_user = self.context['request'].user, to_user = chat.to_chat_user)
