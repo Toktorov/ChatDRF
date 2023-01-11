@@ -19,8 +19,20 @@ class MessageSerializer(serializers.ModelSerializer):
         model = Message
         fields = "__all__"
 
+class MessageCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Message
+        fields = ('message', 'chat')
+
+    def create(self, validated_data):
+        chat = Chat.objects.get(pk = self.initial_data['chat'])
+        message = Message.objects.create(chat = validated_data['chat'], message = validated_data['message'], from_user = self.context['request'].user, to_user = chat.to_chat_user)
+        message.save()
+        return message
+
 class ChatChatRetrieveSerializer(serializers.ModelSerializer):
     messages_chat = MessageSerializer(read_only = True, many = True)
+
     class Meta:
-        model = Chat 
+        model = Chat
         fields = ('id', 'from_chat_user', 'to_chat_user', 'messages_chat')

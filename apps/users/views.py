@@ -9,11 +9,14 @@ from apps.users.serializers import UserSerializer, UserRegisterSerializer, UserR
 class UserAPIViewSet(ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = (IsAdminUser, )
+    # permission_classes = (IsAdminUser, )
 
 class UserRegisterAPIView(CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserRegisterSerializer
+
+    # def post(self, request, *args, **kwargs):
+    #     return super().post(request, *args, **kwargs)
 
 class UserRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
