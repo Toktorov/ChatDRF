@@ -37,6 +37,25 @@ class MessageCreateSerializer(serializers.ModelSerializer):
         message.save()
         return message
 
+class MessageUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Message
+        fields = ('message', 'chat')
+
+    def validate(self, attrs):
+        try:
+            chat = Chat.objects.get(pk = self.initial_data['chat'], from_chat_user = self.context['request'].user)
+        except:
+            chat = Chat.objects.get(pk = self.initial_data['chat'], to_chat_user = self.context['request'].user)
+        return attrs
+
+    def update(self, validated_data):
+        chat = Chat.objects.get(pk = self.initial_data['chat'])
+        message = Message.objects.get(pk = chat.id)
+        message.message = validated_data['message']
+        message.save()
+        return message
+
 class ChatChatRetrieveSerializer(serializers.ModelSerializer):
     messages_chat = MessageSerializer(read_only = True, many = True)
 

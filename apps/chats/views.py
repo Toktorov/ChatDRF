@@ -2,7 +2,7 @@ from django.shortcuts import render
 from apps.chats.models import Chat, Message
 from apps.chats.serializers import ChatSerializer, ChatChatRetrieveSerializer, MessageCreateSerializer
 from apps.chats.permissions import ChatPermissions
-from rest_framework.generics import ListCreateAPIView, RetrieveAPIView, CreateAPIView
+from rest_framework.generics import ListCreateAPIView, RetrieveAPIView, CreateAPIView, DestroyAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.permissions import IsAdminUser
 
 # Create your views here.
@@ -19,6 +19,15 @@ class ChatRetrieveAPIView(RetrieveAPIView):
     serializer_class = ChatChatRetrieveSerializer
     # permission_classes = (ChatPermissions, )
 
+class ChatDestroyAPIView(DestroyAPIView):
+    queryset = Chat.objects.all()
+    serializer_class = ChatSerializer
+    # permission_classes = (ChatPermissions, )
+
 class ChatMessageCreateAPIView(CreateAPIView):
+    queryset = Message.objects.all()
+    serializer_class = MessageCreateSerializer
+
+class ChatMessageRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     queryset = Message.objects.all()
     serializer_class = MessageCreateSerializer
