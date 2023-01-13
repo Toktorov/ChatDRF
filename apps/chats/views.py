@@ -32,6 +32,9 @@ class ChatMessageCreateAPIView(CreateAPIView):
     queryset = Message.objects.all()
     serializer_class = MessageCreateSerializer
 
+    def perform_create(self, serializer):
+        return serializer.save(from_user = self.request.user)
+
 class ChatMessageRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     queryset = Message.objects.all()
     serializer_class = MessageCreateSerializer
