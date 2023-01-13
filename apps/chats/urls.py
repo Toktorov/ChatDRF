@@ -7,5 +7,5 @@ urlpatterns = [
     path('chat/<int:pk>/', ChatRetrieveAPIView.as_view(), name = 'api_detail_chat'),
     path('chat/destroy/<int:pk>', ChatDestroyAPIView.as_view(), name = "api_destroy_chat"),
     path('message/create/', ChatMessageCreateAPIView.as_view(), name = 'api_message_create'),
-    path('message/<int:pk>/', ChatMessageRetrieveUpdateDestroyAPIView.as_view(), name = 'api_message_update_destroy')
+    path('message/<int:pk>/', ChatMessageRetrieveUpdateDestroyAPIView.as_view(), name = 'api_message_update_destroy'),
 ]

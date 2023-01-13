@@ -1,9 +1,8 @@
-from django.shortcuts import render
 from apps.chats.models import Chat, Message
 from apps.chats.serializers import ChatSerializer, ChatChatRetrieveSerializer, MessageCreateSerializer
 from apps.chats.permissions import ChatPermissions
 from rest_framework.generics import ListCreateAPIView, RetrieveAPIView, CreateAPIView, DestroyAPIView, RetrieveUpdateDestroyAPIView
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
+from rest_framework.permissions import IsAuthenticated
 from django.db.models import Q
 
 # Create your views here.
